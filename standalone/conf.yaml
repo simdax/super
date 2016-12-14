@@ -1,17 +1,14 @@
-includePaths:
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/PPoly
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/UnitTesting
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/Singleton
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/Connection
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/Collapse
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/WindowViewRecall
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/Log
-    # - /home/simdax/.local/share/SuperCollider/downloaded-quarks/QuarkEditor
-    - /home/simdax/.local/share/SuperCollider/downloaded-quarks/TabbedView2
-    - /home/simdax/.local/share/SuperCollider/downloaded-quarks/TabbedView2_QT
-    - /home/simdax/.local/share/SuperCollider/Extensions/super/
-    - /home/simdax/.local/share/SuperCollider/Extensions/app
 excludePaths:
     - /home/simdax/.local/share/SuperCollider/downloaded-quarks/JACK
-    - /home/simdax/.local/share/SuperCollider/Extensions/axe/lib/ext
+    # - /home/simdax/.local/share/SuperCollider/Extensions/axe/
+    - /usr/local/share/SuperCollider/Extensions/
+    - /home/simdax/.local/share/SuperCollider/Extensions/super/standalone/SCClassLibrary
+    - /home/simdax/.local/share/SuperCollider/Extensions/
+includePaths:
+  - /usr/local/share/SuperCollider/Extensions/scide_scel
+  - /home/simdax/.local/share/SuperCollider/Extensions/super/lib
+  - /home/simdax/.local/share/SuperCollider/downloaded-quarks/TabbedView2
+  - /home/simdax/.local/share/SuperCollider/downloaded-quarks/TabbedView2_QT
+  - /home/simdax/.local/share/SuperCollider/Extensions/app
+  - /home/simdax/.local/share/SuperCollider/Extensions/SynthDefPool
 postInlineWarnings: false

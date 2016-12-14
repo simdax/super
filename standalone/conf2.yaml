@@ -1,0 +1,11 @@
+includePaths:
+  - /home/simdax/.local/share/SuperCollider/downloaded-quarks/TabbedView2
+  - /home/simdax/.local/share/SuperCollider/downloaded-quarks/TabbedView2_QT
+  - /home/simdax/.local/share/SuperCollider/Extensions/super/
+  - /home/simdax/.local/share/SuperCollider/Extensions/app
+  - /home/simdax/.local/share/SuperCollider/Extensions/SynthDefPool
+  - /home/simdax/.local/share/SuperCollider/Extensions/super/standalone/SCClassLibrary
+excludePaths:
+  - /home/simdax/.local/share/SuperCollider/downloaded-quarks/JACK
+  - /home/simdax/.local/share/SuperCollider/Extensions/axe/lib/ext
+postInlineWarnings: false

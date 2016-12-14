@@ -8,7 +8,7 @@
 		res:{arg s; var copy=s.copy; copy.innerRadius=s.innerRadius.rand; copy;});
 	w = Window(nil, 400@400).front.alwaysOnTop_(true);
 	~view=UserView(w, w.bounds.extent);
-	f=e.gui();
+	f=e.gui(7);
 	f.parent.view.mouseUpAction_{~view.refresh};
 	~view.background_(Color.white);
 	~view.animate_(true).frameRate_(2).drawFunc = {
@@ -32,7 +32,7 @@
 	["melodie", "forme"].do{ arg x, i;
 		StaticText(~ww, 180@50)
 		.font_(Font("URW Bookman", 40))
-		.value_(x)
+		.string_(x)
 		.mouseEnterAction_{arg s;
 			s.stringColor_(Color.red);
 			~pbind.next(()).play

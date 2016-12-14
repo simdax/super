@@ -76,7 +76,7 @@ a.vue.refresh;
 
 // return
 a.put(\mels, melsDics);
-a.put(\son, )
+//a.put(\son, )
 // debug
 //~a=a ; ~z=z;
 )

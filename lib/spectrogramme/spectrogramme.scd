@@ -23,10 +23,7 @@ ControlSpec.specs.putAll(
 a=ER({
 	~nb=30;
 	~ss=6; ~ur=0;
-},
-	{ |k,v|
-		//	[k,v].postln;
-		z.refresh;}
+},{z.refresh}
 );
 lines.put(\dic, a);
 a.gui(3, w);

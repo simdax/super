@@ -3,6 +3,7 @@
 //clear all
 s.latency_(0);
 Window.closeAll;
+
 //topEnvironment.clear;
 
 // OSC interface with python (for graph)
