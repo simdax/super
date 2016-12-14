@@ -29,7 +29,7 @@
 	Pbind( \instrument, [\cheappiano, \marimba1].iter.repeat,
 		\amp, [0.1, 1].iter.repeat,
 		\degree,Pseq([0,2,4,7], inf), \dur,0.12).asStream;
-	["melodie", "forme"].do{ arg x;
+	["melodie", "forme"].do{ arg x, i;
 		StaticText(~ww, 180@50)
 		.font_(Font("URW Bookman", 40))
 		.value_(x)
@@ -41,7 +41,12 @@
 			s.stringColor_(Color.black)
 		}
 		.mouseDownAction_{
-			~mels=~mels.add(IO.play)
+			switch(i,
+				0, {~mels=~mels.add(IO.play)},
+				1, { ~pythonOSC.init2},
+				{Error("je sais pas quel menu c'est ???").throw
+				}
+			)
 		}
 	}
 	}
