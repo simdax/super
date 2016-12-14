@@ -2,14 +2,14 @@
 # import argparse
 # import math
 
+## just setup
+import inspect
 import os
+YA = os.path.dirname(inspect.getfile(inspect.currentframe()))
+exec(open("/home/simdax/.local/share/SuperCollider/Extensions/super/lib/python/python/funcs.py").read())
 
-import funcs
 
-
-
-exec(open(os.path.normalize("./funcs.py").read()))
-
+## real puissance
 from pythonosc import udp_client
 from pythonosc import dispatcher
 from pythonosc import osc_server

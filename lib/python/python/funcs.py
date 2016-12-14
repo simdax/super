@@ -1,10 +1,5 @@
 "Fonctions pour OSC communication"
 
-import inspect
-import os
-
-YA = os.path.dirname(inspect.getfile(inspect.currentframe()))
-
 def init(adr, args):
     # print(volume)
     exec(open(YA+"/pyProx.py").read())

@@ -2,11 +2,6 @@
 # import argparse
 # import math
 
-import os
-
-
-
-
 #exec(open(os.path.normalize("./funcs.py").read()))
 
 from pythonosc import udp_client
