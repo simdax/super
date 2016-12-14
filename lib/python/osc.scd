@@ -5,7 +5,9 @@ OSCdef(\io, {
 
 ~adr=["localhost",8000];
 a=(test: {"salut maman"},
-    init:{})
+    init:{},
+	init2:{}
+)
 .collect({|v,k|  
 	{NetAddr(*~adr).sendMsg("/"++k, v.value)}
 });
@@ -13,6 +15,6 @@ a=(test: {"salut maman"},
 )
 
 
-a.init
+a.init2
 
 

@@ -23,6 +23,7 @@ client = udp_client.SimpleUDPClient("localhost", 57120)
 dispatcher = dispatcher.Dispatcher()
 dispatcher.map("/test", print)
 dispatcher.map("/init", init)
+dispatcher.map("/init2", init2)
 # dispatcher.map("/volume", print_volume_handler, "Volume")
 # dispatcher.map("/logvolume", print_compute_handler, "Log volume", math.log)
 
