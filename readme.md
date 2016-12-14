@@ -1,0 +1,2 @@
+Spectrogramme -> spectrogrammePlusR 
+-> notes -> play
