@@ -4,7 +4,11 @@ OSCdef(\io, {
 }, \filter);
 
 ~adr=["localhost",8000];
-a=(test: {"salut maman"},
+a=(
+	forward:{ arg s, sel ... args;
+		NetAddr(*~adr).sendMsg("/"++sel, *args)
+	},
+	test: {"salut maman"},
     init:{},
 	init2:{}
 )
@@ -16,5 +20,7 @@ a=(test: {"salut maman"},
 
 
 a.init2
+a.testBourrin
 
+NetAddr(*~adr).sendMsg("/testBourrin", 0)
 

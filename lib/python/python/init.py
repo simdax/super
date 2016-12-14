@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+global g
+
 "balance un gros graphe dans ta gueule"
 
 import pyqtgraph as pg

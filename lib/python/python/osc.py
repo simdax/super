@@ -14,6 +14,9 @@ from pythonosc import udp_client
 from pythonosc import dispatcher
 from pythonosc import osc_server
 
+
+global g
+
 client = udp_client.SimpleUDPClient("localhost", 57120)
 
 # for x in range(10):
@@ -24,6 +27,7 @@ dispatcher = dispatcher.Dispatcher()
 dispatcher.map("/test", print)
 dispatcher.map("/init", init)
 dispatcher.map("/init2", init2)
+dispatcher.map("/testBourrin", testBourrin)
 # dispatcher.map("/volume", print_volume_handler, "Volume")
 # dispatcher.map("/logvolume", print_compute_handler, "Log volume", math.log)
 
