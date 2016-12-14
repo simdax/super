@@ -6,7 +6,7 @@
 import inspect
 import os
 YA = os.path.dirname(inspect.getfile(inspect.currentframe()))
-exec(open("/home/simdax/.local/share/SuperCollider/Extensions/super/lib/python/python/funcs.py").read())
+exec(open("/home/simdax/.local/share/SuperCollider/Extensions/super/lib/graph/python/funcs.py").read())
 
 
 ## real puissance
