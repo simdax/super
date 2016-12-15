@@ -6,7 +6,7 @@ var line=false, move=false, ind;
 // to help manipulation
 var origin, mouseCoord, mouseButton;
 ~rects=[];
-~lines=[];
+~connecs=[];
 
 
 Window.closeAll;
@@ -23,7 +23,7 @@ w=Window().front;
 .mouseUpAction_{arg s, x, y; 
 	var sel=~rects.detectIndex({|rect| rect.contains(x@y) });
 	(sel.notNil && line).if{
-		~lines=~lines.add(ind -> sel)
+		~connecs=~connecs.add(ind -> sel)
 	};
 	line=false; move=false; ind=nil;
     ~window.refresh;
@@ -44,13 +44,13 @@ w=Window().front;
         }
 	};
 	~window.refresh
-};
+}; 
 ~window.drawFunc_{
 	//line.postln;
 	~rects.do{ arg rect;
 		Pen.fillRect(rect);
 	};
-	~lines.do{arg line;
+	~connecs.do{arg line;
 		Pen.line(~rects[line.key].center,~rects[line.value].center);
 		Pen.stroke
 	};
