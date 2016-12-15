@@ -1,6 +1,5 @@
 (
-dependencies:
-["SynthDefPool"].collect("https://github.com/simdax"+/+_)                    ++["TabbedView2","TabbedView2_QT"]
+dependencies:["SynthDefPool,app"].collect("https://github.com/simdax"+/+_)++["TabbedView2","TabbedView2_QT"]
 )
 
 // myenvirGUi

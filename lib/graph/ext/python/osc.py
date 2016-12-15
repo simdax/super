@@ -6,6 +6,9 @@
 import inspect
 import os
 YA = os.path.dirname(inspect.getfile(inspect.currentframe()))
+
+## here we should choose visualisation
+## between pyqtgraph, nxvie etc.
 exec(open("/home/simdax/.local/share/SuperCollider/Extensions/super/lib/graph/python/funcs.py").read())
 
 

@@ -1,1 +1,1 @@
-python python/osc.py
+python ext/python/osc.py

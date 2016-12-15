@@ -4,7 +4,7 @@ includePaths:
   - /home/simdax/.local/share/SuperCollider/Extensions/super/
   - /home/simdax/.local/share/SuperCollider/Extensions/app
   - /home/simdax/.local/share/SuperCollider/Extensions/SynthDefPool
-  - /home/simdax/.local/share/SuperCollider/Extensions/super/standalone/SCClassLibrary
+  # - /home/simdax/.local/share/SuperCollider/Extensions/super/standalone/SCClassLibrary
 excludePaths:
   - /home/simdax/.local/share/SuperCollider/downloaded-quarks/JACK
   - /home/simdax/.local/share/SuperCollider/Extensions/axe/lib/ext
