@@ -17,7 +17,7 @@ w=Window().front;
 .mouseMoveAction_{arg s, x, y;
     mouseCoord=x@y;
 	(move && ind.notNil).if{
-		~rects[ind].area.center_(x@y)
+		~rects[ind].area=~rects[ind].area.center_(x@y);
 	};
     ~window.refresh}
 .mouseUpAction_{arg s, x, y; 
