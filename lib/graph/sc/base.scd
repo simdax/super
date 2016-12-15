@@ -17,11 +17,11 @@ w=Window().front;
 .mouseMoveAction_{arg s, x, y;
     mouseCoord=x@y;
 	(move && ind.notNil).if{
-		~rects[ind]=~rects[ind].center_(x@y)
+		~rects[ind].area.center_(x@y)
 	};
     ~window.refresh}
 .mouseUpAction_{arg s, x, y; 
-	var sel=~rects.detectIndex({|rect| rect.contains(x@y) });
+	var sel=~rects.detectIndex({|rect| rect.area.contains(x@y) });
 	(sel.notNil && line).if{
 		~connecs=~connecs.add(ind -> sel)
 	};
@@ -29,7 +29,7 @@ w=Window().front;
     ~window.refresh;
 }
 .mouseDownAction_{arg s, x, y, mod, bt;
-	ind=~rects.detectIndex({|rect| rect.contains(x@y) });
+	ind=~rects.detectIndex({|rect| rect.area.contains(x@y) });
 	mouseButton=bt;
 	if(bt==1){
 		ind.notNil.if{
@@ -38,20 +38,20 @@ w=Window().front;
 	}{
 		ind.isNil.if
 		{ 
-            ~rects=~rects.add((10@10).asRect.center_(x@y));
+            ~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
 		}{ line=true;
-            mouseCoord=origin=~rects[ind].center;
+            mouseCoord=origin=~rects[ind].area.center;
         }
 	};
 	~window.refresh
 }; 
 ~window.drawFunc_{
 	//line.postln;
-	~rects.do{ arg rect;
-		Pen.fillRect(rect);
+	~rects.do{ arg obj;
+		Pen.fillRect(obj.area);
 	};
 	~connecs.do{arg line;
-		Pen.line(~rects[line.key].center,~rects[line.value].center);
+		Pen.line(~rects[line.key].area.center,~rects[line.value].area.center);
 		Pen.stroke
 	};
 	if(line){

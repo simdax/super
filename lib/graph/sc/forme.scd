@@ -11,8 +11,8 @@ var t;
 	res
 }.value;
 // TODO trying to do beautiful, extract window and leave graph alone
-// ~graphe
-// ~window=~graphe.window;
+//~graphe
+~window=~graphe.window;
 ~vitesses=(tempo:1);
 ~vitesses.gui(4, ~graphe.window, ~graphe.window.bounds.leftTop @ (30@40)  );
 ~boules=[];
