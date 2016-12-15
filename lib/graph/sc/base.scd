@@ -24,7 +24,10 @@ w=Window().front;
 	var sel=~rects.detectIndex({|rect| rect.area.contains(x@y) });
 	(sel.notNil && line).if{
 		~connecs=~connecs.add(ind -> sel)
-	};
+	}{
+        ~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
+        ~connecs=~connecs.add(ind -> (~rects.size-1) )
+    };
 	line=false; move=false; ind=nil;
     ~window.refresh;
 }
@@ -39,9 +42,10 @@ w=Window().front;
 		ind.isNil.if
 		{ 
             ~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
-		}{ line=true;
-            mouseCoord=origin=~rects[ind].area.center;
-        }
+            ind=~rects.size-1;
+		};
+        line=true;
+        mouseCoord=origin=~rects[ind].area.center;
 	};
 	~window.refresh
 }; 

@@ -2,24 +2,22 @@ s.boot
 
 (
 var s=currentEnvironment;
-b=();
-topEnvironment.clear;
-~players=();
 a=().make{Graph.forme};
 a.window.addAction({ arg ss, x, y, mod, but, cl;
-		var r=~rects.detectIndex( _.contains(x@y));
+	var r=~rects.detect{arg x; x.area.contains(x@y)};
 		if((cl>1)&&(r.notNil)&&(but==1)){
-			s.at(\players).put(r.asSymbol,().make{IO.play})
+			r.put(\mel,().make{IO.play})
 		}
 	}.inEnvir(a.graphe), \mouseDownAction)
-	.addAction({
-		b.root=a.boules;
-	},\drawFunc)
-
+	// .addAction({
+	// 	~rects.protoEvent=a.boules;
+	// }.inEnvir(a.graphe),\drawFunc)
 )
 
 (
-
+Pbind(
+	
+).play(pro)
 //round?
 )
 

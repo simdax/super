@@ -12,10 +12,8 @@ var t;
 }.value;
 // TODO trying to do beautiful, extract window and leave graph alone
 //~graphe
-~window=~graphe.window;
 ~vitesses=(tempo:1);
 ~vitesses.gui(4, ~graphe.window, ~graphe.window.bounds.leftTop @ (30@40)  );
-~boules=[];
 
 i=[];  j=[];
 t=currentEnvironment;
@@ -27,7 +25,6 @@ t=currentEnvironment;
 			~connecs.do { |connec, ind|
 				t.use{
 					~vitesses[ind.asSymbol]??{~vitesses[ind.asSymbol]=0.02};
-					~boules[ind] ?? {~boules=~boules.add(Point())};
 				};
 				i[ind] ?? {i=i.add(0)};
 				j[ind] ?? {j=j.add(-1)};
@@ -43,7 +40,7 @@ t=currentEnvironment;
 						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
 					};
 					pos=(~rects[connec.key].area.center + (distance*i[ind]));
-					t.at(\boules)[ind]=pos;
+					~rects[ind].pos=pos;
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));
 					Pen.fill;
