@@ -1,6 +1,9 @@
 (
 var add;
-b={var res=().make{Graph.base};
+var i,j;
+var t;
+
+~graphe={var res=().make{Graph.base};
 	res.window.mouseMoveAction = res.window.mouseMoveAction.inEnvir(res);
 	res.window.mouseUpAction = res.window.mouseUpAction.inEnvir(res);
 	res.window.mouseDownAction = res.window.mouseDownAction.inEnvir(res);
@@ -8,18 +11,23 @@ b={var res=().make{Graph.base};
 	res
 }.value;
 
-add=(
-tempo:1
-); add.gui(4, b.window, b.window.bounds.leftTop @ (30@40)  );
+~vitesses=(tempo:1);
+~vitesses.gui(4, ~graphe.window, ~graphe.window.bounds.leftTop @ (30@40)  );
+~boules=[];
+
 
 i=[];  j=[];
+t=currentEnvironment;
 
-b.use{
+~graphe.use{
 	~window.animate_(true);
 	~window.drawFunc=~window.drawFunc.addFunc({
 		if(~connecs.size>0){
 			~connecs.do { |connec, ind|
-				add[ind.asSymbol]??{add[ind.asSymbol]=0.02};
+				t.use{
+					~vitesses[ind.asSymbol]??{~vitesses[ind.asSymbol]=0.02};
+					~boules[ind] ?? {~boules=~boules.add(Point())};
+				};
 				i[ind] ?? {i=i.add(0)};
 				j[ind] ?? {j=j.add(-1)};
 				Pen.use{
@@ -29,22 +37,21 @@ b.use{
 					;
 					var pointeur=
 					if((i[ind]>1) or: (i[ind]<0)){j[ind]=j[ind].neg};
-					i[ind]=i[ind] + (add[ind.asSymbol] * j[ind] * add.tempo);
-
-					Pen.translate(*(distance.asArray * i[ind]));
+					var pos;
+					t.use{
+						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
+					};
+					pos=(~rects[connec.key].center + (distance*i[ind]));
+					t.at(\boules)[ind]=pos;
 					Pen.color=Color.red;
-					Pen.addOval(
-						grosseur.asRect.center_(~rects[connec.key].center)
-					);
+					Pen.addOval(grosseur.asRect.center_(pos));
 					Pen.fill;
 				}
 			}
 		}
-	}.inEnvir(b)
+	}.inEnvir(~graphe)
 	);
-}
+};
+
 )
 
-
-a=(a:9); a.gui(3)
-a[\9]=6
