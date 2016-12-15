@@ -34,7 +34,7 @@ t=currentEnvironment;
 				Pen.use{
 					var grosseur=(10@10);
 					var distance=
-					(~rects[connec.value].center-~rects[connec.key].center)
+					(~rects[connec.value].area.center-~rects[connec.key].area.center)
 					;
 					var pointeur=
 					if((i[ind]>1) or: (i[ind]<0)){j[ind]=j[ind].neg};
@@ -42,7 +42,7 @@ t=currentEnvironment;
 					t.use{
 						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
 					};
-					pos=(~rects[connec.key].center + (distance*i[ind]));
+					pos=(~rects[connec.key].area.center + (distance*i[ind]));
 					t.at(\boules)[ind]=pos;
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));
