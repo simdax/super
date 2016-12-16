@@ -33,7 +33,7 @@ var routine=Task({
 			{ b.next >= pQ.topPriority}
 			{false}
 		){
-			(self[\def] ++ (degree:pQ.pop, dur:0.1)).play;
+			(self[\def].value(()) ++ (degree:pQ.pop, dur:0.1)).play;
 		};
 		defer{
 			pos=pos+(f.vue.bounds.width*(self[\fps].reciprocal/self[\time]));
@@ -55,6 +55,8 @@ var self=currentEnvironment;
 ~visible={ arg s, bool; f.vue.parent.parent.visible_(bool)};
 ~front={self.visible(true)};
 ~hide={self.visible(false)};
+~play={arg a; button.doAction }.inEnvir(self);
+~addVoice={arg s; self.spectrogramme.vue.parent.children[4].children[0].children[0].doAction; s};
 
 
 // petite barre
@@ -75,9 +77,6 @@ button=Button(f.vue.parent).action_{
 		esp.pause
 	}
 };
-
-~play={arg a; button.doAction }.inEnvir(self);
-~addVoice={self.spectrogramme.vue.parent.children[4].children[0].children[0].doAction};
 
 f.vue.parent.parent.userCanClose_(false).postln;
 // // save here
