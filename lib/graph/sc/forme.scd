@@ -15,33 +15,32 @@ var t;
 ~vitesses=(tempo:1);
 ~vitesses.gui(4, ~graphe.window, ~graphe.window.bounds.leftTop @ (30@40)  );
 
-i=[];  j=[], k=[];
+i=[];  j=[]; 
+
 t=currentEnvironment;
 
 ~graphe.use{
 	~window.animate_(true);
 	~window.drawFunc=~window.drawFunc.addFunc({
-		if(~connecs.size>0){
-			~connecs.do { |connec, ind|
+		if(~paths.size>0){
+			~paths.do { |path, ind|
 				t.use{
 					~vitesses[ind.asSymbol]??{~vitesses[ind.asSymbol]=0.02};
-					~rects[ind].put(~vitesses[ind.asSymbol].copy);
 				};
-				i[ind] ?? {i=i.add(0)}; // rate
-				j[ind] ?? {j=j.add(-1)}; // sens
-				k[ind] ?? {k=k.add(0)}; // index of path
+				~rects[ind].put(\vitesse, t[\vitesses][ind.asSymbol]);
+				i[ind] ?? {i=i.add(0)}; // speed
+				j[ind] ?? {j=j.add(0)}; // index
 				Pen.use{
-					var pos;
+					var pos=~rects[path@|@(j[ind])].area.center;
 					var grosseur=(10@10);
 					var distance=
-					(~rects[connec.value].area.center-
-						~rects[connec.key].area.center)
-					;
-					if((i[ind]>1) or: (i[ind]<0)){j[ind]=j[ind].neg};
-					t.use{
-						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
-					};
-					pos=(~rects[connec.key].area.center + (distance*i[ind]));
+					(
+						~rects[path@|@(j[ind]+1)].area.center -
+						~rects[path@|@(j[ind])].area.center
+					);
+					i[ind]=i[ind] + ~rects[ind].vitesse * t[\vitesses].tempo;
+					pos=pos + (distance*i[ind]);
+					if(i[ind]>1){j[ind]=j[ind]+1; i[ind]=0};
 					~rects[ind].pos=pos; 
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));
