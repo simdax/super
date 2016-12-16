@@ -25,8 +25,8 @@ var hook={
 var fps=1/1000;
 var routine=Task({
 	var b= Ptime().iter;
-	thisThread.exceptionHandler.postcs;
-	thisThread.exceptionHandler_{"rien".postln};
+	// thisThread.exceptionHandler.postcs;
+	// thisThread.exceptionHandler_{"rien".postln};
 	loop{
 		if(
 			(now=b.next);
@@ -34,10 +34,7 @@ var routine=Task({
 			{ b.next >= pQ.topPriority}
 			{false}
 		){
-			(
-				degree:pQ.pop, dur:0.1,
-				//	instrument:~instrDic[0]
-			).play;
+			(self[\def] ++ (degree:pQ.pop, dur:0.1)).play;
 		};
 		defer{
 			pos=pos+(f.vue.bounds.width*(fps/time));
@@ -46,12 +43,15 @@ var routine=Task({
 			if(now > time)
 			{
 				b=Ptime().iter; now=0;
-				try(hook,{Error("hook a bougé!").throw});
+				try(hook,{Error("hook a bougué!").throw});
 			}
 		};
 		fps.wait;
 	}	
 });
+var self=currentEnvironment;
+
+~def=();
 // petite barre
 {var ff=f.vue.drawFunc; 
 	ff=ff.addFunc{

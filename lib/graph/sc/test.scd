@@ -4,9 +4,10 @@ s.boot
 var s=currentEnvironment;
 a=().make{Graph.forme};
 a.window.addAction({ arg ss, x, y, mod, but, cl;
-	var r=~rects.detect{arg x; x.area.contains(x@y)};
+	var r=~rects.detect{arg xx; xx.area.contains(x@y)};
 		if((cl>1)&&(r.notNil)&&(but==1)){
-			r.put(\mel,().make{IO.play})
+			r.put(\mel,().make{IO.play});
+			//r.mel
 		}
 	}.inEnvir(a.graphe), \mouseDownAction)
 	// .addAction({
@@ -21,5 +22,7 @@ Pbind(
 //round?
 )
 
+
+a=().make{IO.play}
 
 
