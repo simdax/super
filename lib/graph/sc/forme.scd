@@ -39,9 +39,10 @@ t=currentEnvironment;
 						~rects[path@|@(j[ind]+1)].area.center -
 						~rects[path@|@(j[ind])].area.center
 					);
+					Pen.translate(*(~rects[path@|@(j[ind]+1)].area.center.asArray.postln));
 					i[ind]=i[ind] + ~rects[ind].vitesse * t[\vitesses].tempo;
-					pos=pos + (distance*i[ind]);
-					if(i[ind]>1){j[ind]=j[ind]+1; i[ind]=0};
+					pos=pos + 1;//(distance*i[ind]);
+					if(i[ind]>100){j[ind]=j[ind]+1; i[ind]=0};
 					~rects[ind].pos=pos; 
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));

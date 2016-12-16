@@ -1,17 +1,16 @@
 (
 var esp;
 var f=IO.notes;
-var pos=0;
+var pos=0; var now=0; 
 var pQ=PriorityQueue();
-var time=2;
-var now=0;
-var durs, notes;
+
+var button;
+
 var hook={ 
 	var h=f.vue.bounds.height;
 	var w=f.vue.bounds.width;
-
-	durs=(f.pts.collect(_.x) / w) * time;
-	notes=(h - f.pts.collect(_.y)) / h * f.dic.nb;
+	var durs=(f.pts.collect(_.x) / w) * self[\time];
+	var notes=(h - f.pts.collect(_.y)) / h * f.dic.nb;
 	// some lag impression ?
 	durs - 0.1;
 	// refresh priority queue
@@ -22,7 +21,7 @@ var hook={
 	};
 	pQ.topPriority;
 };
-var fps=1/1000;
+
 var routine=Task({
 	var b= Ptime().iter;
 	// thisThread.exceptionHandler.postcs;
@@ -37,21 +36,27 @@ var routine=Task({
 			(self[\def] ++ (degree:pQ.pop, dur:0.1)).play;
 		};
 		defer{
-			pos=pos+(f.vue.bounds.width*(fps/time));
+			pos=pos+(f.vue.bounds.width*(self[\fps].reciprocal/self[\time]));
 			if(pos > 500){pos=0};
 			f.vue.refresh;
-			if(now > time)
+			if(now > self[\time])
 			{
 				b=Ptime().iter; now=0;
 				try(hook,{Error("hook a bougué!").throw});
 			}
 		};
-		fps.wait;
+		self[\fps].reciprocal.wait;
 	}	
 });
 var self=currentEnvironment;
 
-~def=();
+// INTERFACE
+~def=();  ~time=2; ~fps=1000;
+~visible={ arg s, bool; f.vue.parent.parent.visible_(bool)};
+~front={self.visible(true)};
+~hide={self.visible(false)};
+
+
 // petite barre
 {var ff=f.vue.drawFunc; 
 	ff=ff.addFunc{
@@ -61,12 +66,9 @@ var self=currentEnvironment;
 	};
 }.value;
 
-Button(f.vue.parent).action_{
+button=Button(f.vue.parent).action_{
 	if(esp.isPlaying.not){
 		hook.value;
-		// routine=routine
-		// .originalStream
-		// .exceptionHandler={"fdsfqs".postln; esp.stop};
 		esp=Pprotect(routine.originalStream.asStream,
 			{thisProcess.stop}).play
 	}{
@@ -74,8 +76,16 @@ Button(f.vue.parent).action_{
 	}
 };
 
-// garbage here
-f.vue.parent.postln.onClose_{ esp.stop; esp.clear};
+~play={arg a; button.doAction }.inEnvir(self);
+~addVoice={self.spectrogramme.vue.parent.children[4].children[0].children[0].doAction};
+
+f.vue.parent.parent.userCanClose_(false).postln;
+// // save here
+// f.vue.parent.postln.onClose_{
+// 	Archive.at(\sup) ?? {Archive.put(\sup, ())};
+// 	Archive.put(\sup, Archive.at(\sup).put(Date.getDate, self));
+// 	esp.stop; esp.clear
+// };
 
 
 f.dic.chainDispatch(hook);
