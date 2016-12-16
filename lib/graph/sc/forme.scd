@@ -25,8 +25,8 @@ t=currentEnvironment;
 			~connecs.do { |connec, ind|
 				t.use{
 					~vitesses[ind.asSymbol]??{~vitesses[ind.asSymbol]=0.02};
-					~rects[ind].put(~vitesses[ind.asSymbol].copy);
 				};
+				~rects[ind].put(\vitesse, t[\vitesses][ind.asSymbol]);
 				i[ind] ?? {i=i.add(0)};
 				j[ind] ?? {j=j.add(-1)};
 				Pen.use{
