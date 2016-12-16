@@ -7,7 +7,7 @@ var line=false, move=false, ind;
 var origin, mouseCoord, mouseButton;
 ~rects=[];
 ~connecs=[];
-
+~paths=[];
 
 Window.closeAll;
 w=Window().front;
@@ -19,15 +19,19 @@ w=Window().front;
 	(move && ind.notNil).if{
 		~rects[ind].area=~rects[ind].area.center_(x@y);
 	};
-    ~window.refresh}
-.mouseUpAction_{arg s, x, y; 
+    ~window.refresh
+}
+.mouseUpAction_{arg s, x, y, mod, but, cl; 
 	var sel=~rects.detectIndex({|rect| rect.area.contains(x@y) });
 	(sel.notNil && line).if{
 		~connecs=~connecs.add(ind -> sel)
 	}{
-        ~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
-        ~connecs=~connecs.add(ind -> (~rects.size-1) )
+        if(but==0)
+        {~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
+            ~connecs=~connecs.add(ind -> (~rects.size-1));
+        };
     };
+    ~paths=Graph.path.sot(*(~connecs.reject{arg as; as.key==as.value}));
 	line=false; move=false; ind=nil;
     ~window.refresh;
 }
@@ -50,17 +54,18 @@ w=Window().front;
 	~window.refresh
 }; 
 ~window.drawFunc_{
-	//line.postln;
 	~rects.do{ arg obj;
 		Pen.fillRect(obj.area);
 	};
-	~connecs.do{arg line;
-		Pen.line(~rects[line.key].area.center,~rects[line.value].area.center);
-		Pen.stroke
+    //Pen.line(~rects[line.key].area.center,~rects[line.value].area.center);
+	~paths.do{arg line;
+        line.doAdjacentPairs{ arg a,b;
+            Pen.line(~rects[a].area.center,~rects[b].area.center)
+        };
 	};
 	if(line){
 		Pen.line(origin,mouseCoord);
-		Pen.stroke
-	}
+	};
+    Pen.stroke
 }
 )

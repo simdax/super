@@ -25,6 +25,7 @@ t=currentEnvironment;
 			~connecs.do { |connec, ind|
 				t.use{
 					~vitesses[ind.asSymbol]??{~vitesses[ind.asSymbol]=0.02};
+					~rects[ind].put(~vitesses[ind.asSymbol].copy);
 				};
 				i[ind] ?? {i=i.add(0)};
 				j[ind] ?? {j=j.add(-1)};
@@ -40,7 +41,7 @@ t=currentEnvironment;
 						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
 					};
 					pos=(~rects[connec.key].area.center + (distance*i[ind]));
-					~rects[ind].pos=pos;
+					~rects[ind].pos=pos; 
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));
 					Pen.fill;
