@@ -15,7 +15,7 @@ var t;
 ~vitesses=(tempo:1);
 ~vitesses.gui(4, ~graphe.window, ~graphe.window.bounds.leftTop @ (30@40)  );
 
-i=[];  j=[]; k=[];
+i=[];  j=[]; 
 t=currentEnvironment;
 
 ~graphe.use{
@@ -28,21 +28,18 @@ t=currentEnvironment;
 				};
 				~rects[ind].put(\vitesse, t[\vitesses][ind.asSymbol]);
 				i[ind] ?? {i=i.add(0)}; // speed
-				j[ind] ?? {j=j.add(-1)}; // direction
-				k[ind] ?? {k=k.add(0)}; // index
+				j[ind] ?? {j=j.add(0)}; // index
 				Pen.use{
+					var pos=~rects[path@|@(j[ind])].area.center;
 					var grosseur=(10@10);
 					var distance=
-					(~rects[path@@(k[ind]+1)].area.center
-						-~rects[path@@(k[ind])].area.center)
-					;
-					var pointeur=
-					if((i[ind]>1) or: (i[ind]<0)){j[ind]=j[ind].neg};
-					var pos;
-					t.use{
-						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
-					};
-					pos=(~rects[path@@k[ind]].area.center + (distance*i[ind]));
+					(
+						~rects[path@|@(j[ind]+1)].area.center -
+						~rects[path@|@(j[ind])].area.center
+					);
+					i[ind]=i[ind] + ~rects[ind].vitesse * t[\vitesses].tempo;
+					pos=pos + (distance*i[ind]);
+					if(i[ind]>1){j[ind]=j[ind]+1; i[ind]=0};
 					~rects[ind].pos=pos; 
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));
