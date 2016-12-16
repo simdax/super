@@ -1,8 +1,4 @@
 (
-a:{ arg ... associations;
-	var k=associations.postln.collect(_.key);
-	k.sort.separate{arg a,b; (b-a) > 1}
-},
 b:{ arg ... as;
 	var associations=as.copy;
 	var i=0, j=1;
@@ -24,10 +20,21 @@ c:{ arg ... as;
 	var f=(_.sort({arg a,b; a.value == b.key}));
 	f.(f.(f.(as))); 
 },
+removeDup:{ arg s, arr;
+	var c=[arr[0]];
+	(arr.size-1).do { |i|
+		if(arr[i+1]==arr[i]){
+			
+		}{c=c.add(arr[i+1])}
+	};
+	c
+},
 sot:{ arg s ... as;
-	s[\c].value(*as).separate{ arg a,b;
+	var res=s[\c].value(*as).separate{ arg a,b;
 		a.value != b.key
-	}
-	.collect{ arg x; x.postln.asDict.asPairs.postln}.postln
-}
+	}.postln.collect{ arg x; x.asDict.asPairs};
+	res.collect(s.removeDup(_))
+},
 )
+
+//Graph.path.removeDup([0,1,1,2])

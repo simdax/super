@@ -15,7 +15,7 @@ var t;
 ~vitesses=(tempo:1);
 ~vitesses.gui(4, ~graphe.window, ~graphe.window.bounds.leftTop @ (30@40)  );
 
-i=[];  j=[];
+i=[];  j=[], k=[];
 t=currentEnvironment;
 
 ~graphe.use{
@@ -27,16 +27,17 @@ t=currentEnvironment;
 					~vitesses[ind.asSymbol]??{~vitesses[ind.asSymbol]=0.02};
 					~rects[ind].put(~vitesses[ind.asSymbol].copy);
 				};
-				i[ind] ?? {i=i.add(0)};
-				j[ind] ?? {j=j.add(-1)};
+				i[ind] ?? {i=i.add(0)}; // rate
+				j[ind] ?? {j=j.add(-1)}; // sens
+				k[ind] ?? {k=k.add(0)}; // index of path
 				Pen.use{
+					var pos;
 					var grosseur=(10@10);
 					var distance=
-					(~rects[connec.value].area.center-~rects[connec.key].area.center)
+					(~rects[connec.value].area.center-
+						~rects[connec.key].area.center)
 					;
-					var pointeur=
 					if((i[ind]>1) or: (i[ind]<0)){j[ind]=j[ind].neg};
-					var pos;
 					t.use{
 						i[ind]=i[ind] + (~vitesses[ind.asSymbol] * j[ind] * ~vitesses.tempo)
 					};

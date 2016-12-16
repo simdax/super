@@ -1,6 +1,4 @@
 (
-
-//a=().make{IO.spectroPlusR};
 var a=IO.spectroPlusR;
 var w=TabbedView2(a.vue.parent, 250@180);
 var z=[]; 
@@ -76,7 +74,7 @@ a.vue.refresh;
 
 // return
 a.put(\mels, melsDics);
-//a.put(\son, )
+
 // debug
 //~a=a ; ~z=z;
 )

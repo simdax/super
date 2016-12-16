@@ -1,3 +1,6 @@
+// object like
+
+
 ER : EnvironmentRedirect{
 	var <win, <>specs;
 	*new{ arg f,d,specs,init=false;
@@ -50,7 +53,7 @@ ER : EnvironmentRedirect{
 }
 
 + ER {
-	// put specs...
+	// simple helper, put specs...
 	*expEnv{ arg env, envir;
 		^env.parent_((cot:{arg s; 
 			s.kvdo({ arg k,v;
