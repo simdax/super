@@ -9,11 +9,12 @@ ER : EnvironmentRedirect{
 			Function, {res.make(f)},
 			Event, {res.envir=f},
 			{
-				if(res.isKindOf(Dictionary){
+				if(res.isKindOf(Dictionary)){
 					res.envir=res.newFrom(res)
 				}{
 					Error("c'est quoi ctruc ? => "++f.class).throw
 				}
+			}
 		)
 		.dispatch_({ arg k,v;
 			var r=d.inEnvir(res.envir).value(k,v);

@@ -1,19 +1,23 @@
 (
-var s=currentEnvironment;
+var self=currentEnvironment;
 var fL;
-//s.boot;
+
+Window.closeAll;
+s.boot;
+s.latency_(0);
 
 a=().make{Graph.forme};
 a.graphe[\createPlayer]=
 {a.graphe.use{
 	~rects.do{ arg x;
-			x.player=
-			().make{IO.play}.addVoice;
-			x.time=
-			x.controller=SimpleController(x.player)
-			.put(\play,{x.playing=true})
-			.put(\pause,{x.playing=false})
-			;
+		x.player=
+		().make{IO.play}.addVoice;
+		x.player.time=8;
+		x.controller=
+		SimpleController(x.player)
+		.put(\play,{x.playing=true})
+		.put(\pause,{x.playing=false})
+		;
 	}
 }
 };
