@@ -21,17 +21,23 @@ w=Window().front;
 	};
     ~window.refresh
 }
-.mouseUpAction_{arg s, x, y, mod, but, cl; 
+.mouseUpAction_{arg s, x, y, mod, but, cl;
+	// if 
 	var sel=~rects.detectIndex({|rect| rect.area.contains(x@y) });
 	(sel.notNil && line).if{
 		~connecs=~connecs.add(ind -> sel)
 	}{
         if(but==0)
-        {~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
+        {
+			// rect will contain object with music
+			~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
             ~connecs=~connecs.add(ind -> (~rects.size-1));
+			~rects[ind].player.play
         };
     };
+	// sort paths
     ~paths=Graph.path.sot(*(~connecs.reject{arg as; as.key==as.value}));
+	// dont draw line anymore
 	line=false; move=false; ind=nil;
     ~window.refresh;
 }
