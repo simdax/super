@@ -10,6 +10,7 @@ var t;
 	res.window.drawFunc = res.window.drawFunc.inEnvir(res);
 	res
 }.value;
+
 // TODO trying to do beautiful, extract window and leave graph alone
 //~graphe
 ~window=~graphe.window;
@@ -39,7 +40,8 @@ t=currentEnvironment;
 						~rects[path@|@(j[ind]+1)].area.center -
 						~rects[path@|@(j[ind])].area.center
 					);
-					i[ind]=i[ind] + ~rects[ind].vitesse * t[\vitesses].tempo;
+					if(~rects[ind].playing)
+					{i[ind]=i[ind] + ~rects[ind].vitesse * t[\vitesses].tempo};
 					pos=pos + (distance*i[ind]);
 					if(i[ind]>1){j[ind]=j[ind]+1; i[ind]=0};
 					~rects[ind].pos=pos;

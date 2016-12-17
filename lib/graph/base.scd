@@ -32,6 +32,7 @@ w=Window().front;
 			// rect will contain object with music
 			~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
             ~connecs=~connecs.add(ind -> (~rects.size-1));
+			~rects[ind].playing=true;
 			~rects[ind].player.play
         };
     };

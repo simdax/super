@@ -77,13 +77,15 @@ f.mels.do(_.chainDispatch(hook));
 	};
 }.value;
 
+// stop/play Button
 button=Button(f.vue.parent).action_{
 	if(esp.isPlaying.not){
 		hook.value;
-		esp=Pprotect(routine.originalStream.asStream,
-			{thisProcess.stop}).play
+		esp=Pprotect(routine.originalStream.asStream,{thisProcess.stop}).play;
+		self.changed(\play)
 	}{
-		esp.pause
+		esp.pause;
+		self.changed(\pause)
 	}
 };
 

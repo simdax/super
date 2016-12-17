@@ -10,6 +10,11 @@ a.graphe[\createPlayer]=
 		fork({
 			x.player=
 			().make{IO.play}.addVoice;
+			x.controller=SimpleController(x.player)
+			.put(\play,{ x.playing=true})
+			.put(\pause,{x.playing=false})
+			;
+			
 			//x.player.def=(mtranspose:-10);
 			// moui, mais une fois sur deux ça déconne donc bon...
 			// 0.3.wait;
