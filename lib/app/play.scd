@@ -1,8 +1,11 @@
 (
+
+// PRIVATE
 var esp;
 var f=IO.notes;
 var pos=0; var now=0; 
 var pQ=PriorityQueue();
+var self=currentEnvironment.know_(true);
 
 var button;
 
@@ -21,7 +24,6 @@ var hook={
 	};
 	pQ.topPriority;
 };
-
 var routine=Task({
 	var b= Ptime().iter;
 	// thisThread.exceptionHandler.postcs;
@@ -48,7 +50,11 @@ var routine=Task({
 		self[\fps].reciprocal.wait;
 	}	
 });
-var self=currentEnvironment;
+
+
+f.dic.chainDispatch(hook);
+f.mels.do(_.chainDispatch(hook));
+
 
 // INTERFACE
 ~def=();  ~time=2; ~fps=1000;
@@ -56,9 +62,13 @@ var self=currentEnvironment;
 ~front={self.visible(true)};
 ~hide={self.visible(false)};
 ~play={arg a; button.doAction }.inEnvir(self);
-~addVoice={arg s; self.spectrogramme.vue.parent.children[4].children[0].children[0].doAction; s};
+~addVoice={arg s;
+	self.spectrogramme.vue
+	.parent.children[4].children[0].children[0]
+	.doAction; s};
+~close={esp.stop; f.vue.parent.parent.close};
 
-
+//GUI adds
 // petite barre
 {var ff=f.vue.drawFunc; 
 	ff=ff.addFunc{
@@ -78,16 +88,23 @@ button=Button(f.vue.parent).action_{
 	}
 };
 
-f.vue.parent.parent.userCanClose_(false).postln;
-// // save here
-// f.vue.parent.postln.onClose_{
-// 	Archive.at(\sup) ?? {Archive.put(\sup, ())};
-// 	Archive.put(\sup, Archive.at(\sup).put(Date.getDate, self));
-// 	esp.stop; esp.clear
-// };
+//close But
+Button(f.vue.parent)
+.states_([["close"]])
+.action_({
+	~hide.value
+}.inEnvir(self));
 
 
-f.dic.chainDispatch(hook);
-f.mels.do(_.chainDispatch(hook));
+// SAVE
+
+f.vue.parent.parent.userCanClose_(false);
+// save here
+f.vue.parent.onClose_{
+	Archive.at(\sup) ?? {Archive.put(\sup, ())};
+	Archive.put(\sup, Archive.at(\sup).put(Date.getDate, "rien"));
+	esp.stop; esp.clear
+};
+
 
 )

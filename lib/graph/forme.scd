@@ -32,7 +32,7 @@ t=currentEnvironment;
 				i[ind] ?? {i=i.add(0)}; // speed
 				j[ind] ?? {j=j.add(0)}; // index
 				Pen.use{
-										var pos=~rects[path@|@(j[ind])].area.center;
+					var pos=~rects[path@|@(j[ind])].area.center;
 					var grosseur=(10@10);
 					var distance=
 					(
@@ -42,7 +42,8 @@ t=currentEnvironment;
 					i[ind]=i[ind] + ~rects[ind].vitesse * t[\vitesses].tempo;
 					pos=pos + (distance*i[ind]);
 					if(i[ind]>1){j[ind]=j[ind]+1; i[ind]=0};
-					~rects[ind].pos=pos; 
+					~rects[ind].pos=pos;
+
 					Pen.color=Color.red;
 					Pen.addOval(grosseur.asRect.center_(pos));
 					Pen.fill;

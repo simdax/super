@@ -32,7 +32,9 @@ removeDup:{ arg s, arr;
 sot:{ arg s ... as;
 	var res=s[\c].value(*as).separate{ arg a,b;
 		a.value != b.key
-	}.postln.collect{ arg x; x.asDict.asPairs};
+	}
+	//.postln
+	.collect{ arg x; x.asDict.asPairs};
 	res.collect(s.removeDup(_))
 },
 )

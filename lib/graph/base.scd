@@ -44,9 +44,10 @@ w=Window().front;
 		}
 	}{
 		ind.isNil.if
-		{ 
+		{
             ~rects=~rects.add(().area=(10@10).asRect.center_(x@y));
             ind=~rects.size-1;
+			~createPlayer.value;
 		};
         line=true;
         mouseCoord=origin=~rects[ind].area.center;

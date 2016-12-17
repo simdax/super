@@ -10,10 +10,8 @@ var self=currentEnvironment;
 
 ~drawFunc={
 	~plateau.do { |x,i|
-		Pen.use{
-			Pen.color_(~colors[i]);
-			Pen.fillRect(x)
-		}
+		Pen.color_(~colors[i]);
+		Pen.fillRect(x)
 	};
 }.inEnvir(self);
 
