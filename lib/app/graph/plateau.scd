@@ -1,6 +1,10 @@
 (
 var self=currentEnvironment;
 
+
+
+~grid= () ! [];
+
 ~plateau=200@200!4;
 ~plateau.collectInPlace{arg zone;
 	zone.asRect.origin_(200.rand@200.rand)

@@ -12,10 +12,10 @@ var button;
 var hook={ 
 	var h=f.vue.bounds.height;
 	var w=f.vue.bounds.width;
-	var durs=(f.pts.collect(_.x) / w) * self[\time];
+	var durs=(f.pts.collect(_.x) / w) * ~time;
 	var notes=(h - f.pts.collect(_.y)) / h * f.dic.nb;
 	// some lag impression ?
-	durs - 0.1;
+	//	durs - 0.1;
 	// refresh priority queue
 	pQ.clear;
 	(durs+++notes).do { |x|
@@ -23,7 +23,7 @@ var hook={
 		{pQ.put(x[0], x[1])}
 	};
 	pQ.topPriority;
-};
+}.inEnvir(self);
 var routine=Task({
 	var b= Ptime().iter;
 	// thisThread.exceptionHandler.postcs;
@@ -56,7 +56,7 @@ f.mels.do(_.chainDispatch(hook));
 
 
 // INTERFACE
-~def=();  ~time=2; ~fps=1000;
+~def=();  ~time=8; ~fps=1000;
 ~visible={ arg s, bool; f.vue.parent.parent.visible_(bool)};
 ~front={self.visible(true)};
 ~hide={self.visible(false)};

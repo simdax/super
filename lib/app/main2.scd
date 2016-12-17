@@ -7,20 +7,13 @@ a=().make{Graph.forme};
 a.graphe[\createPlayer]=
 {a.graphe.use{
 	~rects.do{ arg x;
-		fork({
 			x.player=
 			().make{IO.play}.addVoice;
+			x.time=
 			x.controller=SimpleController(x.player)
-			.put(\play,{ x.playing=true})
+			.put(\play,{x.playing=true})
 			.put(\pause,{x.playing=false})
 			;
-			
-			//x.player.def=(mtranspose:-10);
-			// moui, mais une fois sur deux ça déconne donc bon...
-			// 0.3.wait;
-			// x.player.hide;
-			//x.player.play;
-		},AppClock)
 	}
 }
 };
