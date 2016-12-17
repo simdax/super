@@ -8,9 +8,9 @@ Window.closeAll;
 
 ~mels=[];
 c=Condition();
-fork{
-	IO.menu(c).play(AppClock);
 	Graph.main;
+fork{
+	//IO.menu(c).play(AppClock);
 	s.bootSync(c);
 }
 )

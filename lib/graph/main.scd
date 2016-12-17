@@ -3,6 +3,8 @@ var s=currentEnvironment;
 var fL;
 //s.boot;
 
+~playerInstances=[];
+
 a=().make{Graph.forme};
 a.graphe[\createPlayer]=
 {a.graphe.use{
@@ -19,8 +21,6 @@ a.graphe[\createPlayer]=
 }
 };
 
-
-
 ~plateau=().make{IO.plateau};
 fL=a.window.drawFunc.array.insert(0,{Pen.use(~plateau[\drawFunc])});
 a.window.drawFunc = FunctionList(fL);
@@ -31,6 +31,12 @@ a.window.addAction({ arg ss, x, y, mod, but, cl;
 		r.player.front; 
 	}
 }.inEnvir(a.graphe), \mouseDownAction);
+
+a.window.parent.onClose_(
+	{ 
+		~rects.do{arg x; x.player !? {x.player.close}}
+	}.inEnvir(a.graphe)
+)
 
 
 )
