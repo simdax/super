@@ -6,10 +6,11 @@ Window.closeAll;
 s.boot;
 s.latency_(0);
 
-a=().make{Graph.forme};
+a=().make{Graph.boules};
 a.graphe[\createPlayer]=
-{a.graphe.use{
-	~rects.do{ arg x;
+{arg ind;
+	a.graphe.use{
+		var x=~rects[ind];
 		x.player=
 		().make{IO.play}.addVoice;
 		x.player.time=8;
@@ -19,7 +20,6 @@ a.graphe[\createPlayer]=
 		.put(\pause,{x.playing=false})
 		;
 	}
-}
 };
 
 ~plateau=().make{IO.plateau};
